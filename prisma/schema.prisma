@@ -1,0 +1,58 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Residents {
+  id       String  @id @default(uuid())
+  name     String
+  email    String  @unique
+  phone_no String
+  apt_name String
+  status   Boolean
+
+  Assets Assets[]
+}
+
+model Assets {
+  id          String    @id @default(uuid())
+  asset_name  String
+  resident_id String
+  resident    Residents @relation(fields: [resident_id], references: [id])
+}
+
+model Contractors {
+  id               String       @id @default(uuid())
+  name             String
+  email            String
+  phone_no         String
+  insurance        String
+  insurance_expire DateTime
+  WorkOrders       WorkOrders[]
+}
+
+model WorkOrders {
+  id            String  @id @default(uuid())
+  work_desc     String
+  status        Boolean
+  contractor_id String
+  contractor Contractors @relation(fields: [contractor_id], references: [id])
+}
+
+model document {
+  id       String   @id @default(uuid())
+  name     String
+  location String
+  create   DateTime @default(now())
+}
+
+model caseDetails {
+  id     String  @id @default(uuid())
+  name   String
+  status Boolean
+}
