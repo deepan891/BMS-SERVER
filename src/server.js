@@ -3,6 +3,8 @@ import cors from "cors";
 import commonRouter from "./routes/common.js";
 import path from "path";
 import { fileURLToPath } from "url";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const app = express();
 
@@ -33,7 +35,7 @@ app.get("/download/uploads/:filename", (req, res) => {
   });
 });
 
-let port = 8000;
+let port = process.env.PORT;
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
 });
