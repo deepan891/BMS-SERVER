@@ -22,7 +22,6 @@ commonRouter.post("/add", addResidents);
 // Search Route
 commonRouter.post("/", dynamicSearch);
 
-//
 commonRouter.post("/contractors",contractors);
 
 commonRouter.post("/activeCases",activeCases);
