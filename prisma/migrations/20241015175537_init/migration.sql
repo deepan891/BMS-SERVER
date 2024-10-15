@@ -1,17 +1,9 @@
 -- CreateTable
-CREATE TABLE `user` (
-    `id` VARCHAR(191) NOT NULL,
-    `name` VARCHAR(191) NOT NULL,
-
-    PRIMARY KEY (`id`)
-) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-
--- CreateTable
 CREATE TABLE `Residents` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
-    `phone_no` BIGINT NOT NULL,
+    `phone_no` VARCHAR(191) NOT NULL,
     `apt_name` VARCHAR(191) NOT NULL,
     `status` BOOLEAN NOT NULL,
 
@@ -33,8 +25,7 @@ CREATE TABLE `Contractors` (
     `id` VARCHAR(191) NOT NULL,
     `name` VARCHAR(191) NOT NULL,
     `email` VARCHAR(191) NOT NULL,
-    `phone_no` BIGINT NOT NULL,
-    `Work_orders` VARCHAR(191) NOT NULL,
+    `phone_no` VARCHAR(191) NOT NULL,
     `insurance` VARCHAR(191) NOT NULL,
     `insurance_expire` DATETIME(3) NOT NULL,
 
@@ -47,7 +38,6 @@ CREATE TABLE `WorkOrders` (
     `work_desc` VARCHAR(191) NOT NULL,
     `status` BOOLEAN NOT NULL,
     `contractor_id` VARCHAR(191) NOT NULL,
-    `resident_id` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

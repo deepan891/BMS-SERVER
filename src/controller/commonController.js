@@ -34,7 +34,7 @@ export const dynamicSearch = async (req, res) => {
     let residenceData = await prisma.residents.findMany({
       where: {
         name: {
-          contains: search,
+          contains: search ?? "",
         },
       },
     });
