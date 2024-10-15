@@ -3,7 +3,9 @@ import cors from "cors";
 import commonRouter from "./routes/common.js";
 import path from "path";
 import { fileURLToPath } from "url";
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
+import { actionContainer, activeCases, addResidents, contractors, dashboardCount, dynamicSearch, getReport, storePDF } from "./controller/commonController.js";
+import { upload } from "./helper/multer.js";
 dotenv.config();
 
 const app = express();
@@ -16,12 +18,35 @@ app.use(
   })
 );
 
-  const __filename = fileURLToPath(import.meta.url);
-  const __dirname = path.dirname(__filename).split("src");
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename).split("src");
 
-app.use(`/uploads`, express.static("uploads"));
+app.use("/uploads", express.static("uploads"));
 
 app.use("/dashboard", commonRouter);
+
+app.get("/", (req, res) => {
+  res.send("Working");
+});
+//  To get Count route
+app.get("/count", dashboardCount);
+
+app.post("/add", addResidents);
+
+// Search Route
+app.post("/search", dynamicSearch);
+
+app.post("/contractors", contractors);
+
+app.post("/activeCases", activeCases);
+
+// Action Container
+app.get("/action", actionContainer);
+
+app.get("/documents", getReport);
+
+// To upload pdf
+app.post("/upload", upload.single("pdf"), storePDF);
 
 app.get("/download/uploads/:filename", (req, res) => {
   const filename = req.params.filename;
