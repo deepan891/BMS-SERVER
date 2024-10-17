@@ -52,7 +52,7 @@ app.get("/download/uploads/:filename", (req, res) => {
   const filename = req.params.filename;
   const filePath = path.join(__dirname[0], "uploads", filename);
 
-  res.download(filePath, (err) => {
+  res.download(filePath,(err) => {
     if (err) {
       console.error("Error during download:", err);
       res.status(404).send("File not found.");
